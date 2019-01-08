@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
-#define STACK_SIZE 100000
 
 bool isValid(char* s) {
-    char stack[STACK_SIZE];
-    int top = -1;
     //counts the length of a string
     int length = -1;
     while (s[++length] != '\0'){};
+    
+    char stack[length];
+    int top = -1;
     //this is the main code
     int i;
     for (i = 0; i < length; ++i) {
@@ -42,10 +42,7 @@ bool isValid(char* s) {
         }
     }
     //check for overflow
-    if (top != -1) {
-        return false;
-    }
-    return true;
+    return top == -1;
 }
 
 //test unit
@@ -55,5 +52,5 @@ int main(int argc, char const *argv[]) {
     printf("%d\n", isValid("()"));//return 1
     printf("%d\n", isValid("()[]{}"));//return 1
     printf("%d\n", isValid("(]"));//return 0
-	return 0;
+    return 0;
 }
